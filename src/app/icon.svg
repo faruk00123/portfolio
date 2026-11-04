@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Omar monogram">
+  <defs>
+    <linearGradient id="bg" x1="8" y1="4" x2="56" y2="60" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2A2142" />
+      <stop offset="0.55" stop-color="#171329" />
+      <stop offset="1" stop-color="#100D1D" />
+    </linearGradient>
+    <linearGradient id="accent" x1="12" y1="12" x2="52" y2="52" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#A78BFA" />
+      <stop offset="1" stop-color="#6D28D9" />
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="15" fill="url(#bg)" />
+  <rect x="1" y="1" width="62" height="62" rx="14" fill="none" stroke="#8B5CF6" stroke-opacity="0.35" />
+  <text x="32" y="42" text-anchor="middle" font-family="Sora, Inter, Segoe UI, Arial, sans-serif" font-size="30" font-weight="700" letter-spacing="-2" fill="url(#accent)">O</text>
+  <circle cx="44.5" cy="40" r="2.4" fill="#A78BFA" />
+</svg>

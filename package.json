@@ -1,5 +1,5 @@
 {
-  "name": "portfolio-app",
+  "name": "md-omar-portfolio",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,6 +9,9 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "framer-motion": "^14.9.0",
+    "gsap": "^3.15.0",
+    "lucide-react": "^1.67.0",
     "next": "16.4.4",
     "react": "19.3.0",
     "react-dom": "19.3.0"

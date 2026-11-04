@@ -1,36 +1,172 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Md. Omar — Portfolio
 
-## Getting Started
+A compact, premium dark-royal-purple portfolio for **Md. Omar**, Full Stack
+Software Engineer. Built with Next.js App Router, TypeScript, Tailwind CSS,
+Framer Motion, GSAP ScrollTrigger, and Lucide icons.
 
-First, run the development server:
+## Run locally
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Production checks:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run lint
+npx tsc --noEmit
+npm run build
+npm start
+```
 
-## Learn More
+## What is implemented
 
-To learn more about Next.js, take a look at the following resources:
+- Fixed navbar with a wordmark logo (`O` badge + `OMAR.` + `Md. Omar`), an
+  animated purple active-section indicator, a scroll progress bar, and an
+  accessible mobile menu.
+- Full-screen hero with a muted, looping, autoplaying background video, poster
+  fallback, constant readability overlays, and a subtle GSAP media-only scale.
+  The hero brightness does not change on scroll.
+- Typewriter headline cycling six phrases with a blinking caret. It renders the
+  first phrase statically when `prefers-reduced-motion: reduce` is set.
+- Portrait composition with six tech logos (React, Next.js, JavaScript,
+  TypeScript, Node.js, MongoDB) orbiting continuously. Icons stay upright and
+  the orbit stops under reduced motion.
+- Section headings: **About Me**, **My Skills**, **My Development Journey**,
+  **Featured Projects**, and **Let's Connect**.
+- Responsive CSS grids: one column on mobile, two on tablet, three on desktop
+  for skills/journey, and two to three for projects.
+- Skills are individual cards with real brand logos and no percentage bars.
+- Journey uses six balanced stage cards (five stages plus a next-chapter card),
+  with no pinning or sticky stacking.
+- Projects use a premium card grid with image hover zoom, stack badges, and
+  only real links. Placeholder projects are clearly marked and render no fake
+  links.
+- Contact card with copy-email feedback, `mailto:` action, real GitHub and
+  LinkedIn links, Barishal location, and live local time.
+- Semantic landmarks, visible focus states, keyboard support, and no horizontal
+  overflow from 320px to 1920px.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Replace the hero media
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Paths live in `src/data/personal.ts`:
 
-## Deploy on Vercel
+```ts
+export const heroMedia = {
+  videoSrc: "/videos/hero-background.mp4",
+  posterSrc: "/images/hero-poster.jpg",
+};
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Replace these files in place:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `public/videos/hero-background.mp4`
+- `public/images/hero-poster.jpg`
+
+Recommended video: H.264 MP4, 1920×1080, 8–15 seconds, seamless loop, under
+~5 MB. Compose the subject toward the centre-right so the left side stays open
+for the hero text. If the video cannot play, the poster and overlays remain.
+
+## Replace the portrait
+
+```ts
+// src/data/personal.ts
+portrait: "/images/omar-portrait.png",
+```
+
+Drop a replacement at `public/images/omar-portrait.png`. A transparent
+background cutout works best. The hero and About section both use this file.
+
+## Edit projects
+
+Project content lives in `src/data/projects.ts`. The current entries are
+**placeholders**:
+
+- `isPlaceholder: true`
+- `githubUrl: null`
+- `liveUrl: null`
+
+Fill in real titles, descriptions, stacks, screenshots, and URLs. Cards only
+render links when a URL exists, so no dead links are shown. Placeholder previews
+live in `public/images/projects/`. Replace them with real screenshots and update
+`image.src` and `image.alt`.
+
+## Personal data
+
+- `src/data/personal.ts` — name, title, email, location, social links, about
+  copy, hero media paths.
+- `src/data/navigation.ts` — section nav items and active-section ids.
+- `src/data/skills.ts` — six technologies with brand colors and logo keys.
+- `src/data/journey.ts` — learning stages (no invented dates or employers).
+- `src/data/projects.ts` — project cards and placeholder flags.
+
+## SEO and metadata
+
+Metadata and Open Graph tags are defined in `src/app/layout.tsx`. In production,
+set `NEXT_PUBLIC_SITE_URL` so canonical and Open Graph URLs resolve to the live
+domain:
+
+```bash
+NEXT_PUBLIC_SITE_URL=https://your-domain.com
+```
+
+On Vercel the app falls back to `VERCEL_PROJECT_PRODUCTION_URL` automatically.
+The `OMAR` favicon is `src/app/icon.svg`; the social preview is
+`public/images/og-image.jpg` (1200×630).
+
+## Project structure
+
+```text
+src/
+  app/            layout, page, global styles, icon
+  components/
+    animations/   AmbientBackground, MotionProvider, ScrollReveal
+    hero/         HeroSection, HeroContent, HeroPortrait, HeroVideo, Typewriter
+    layout/       Navbar, Footer, HashScrollRestoration
+    sections/     About, Skills, Journey, Projects, Contact
+    ui/           Button, SectionHeading, SocialLinks, ProjectCard,
+                  JourneyCard, TechLogos, BrandIcons
+  data/           personal, navigation, skills, journey, projects
+  hooks/          useActiveSection, usePrefersReducedMotion
+  lib/            gsap registration, class helper
+public/
+  images/         hero poster, portrait, OG image, project previews
+  videos/         hero-background.mp4
+```
+
+## Deploy
+
+### GitHub
+
+```bash
+git add .
+git commit -m "Build premium developer portfolio"
+git branch -M main
+git remote add origin https://github.com/faruk00123/<repo>.git
+git push -u origin main
+```
+
+### Vercel
+
+1. Push the repository to GitHub.
+2. In Vercel, choose **Add New → Project** and import the repository.
+3. Framework preset: **Next.js** (auto-detected). Build command `npm run build`,
+   output is handled automatically.
+4. Add `NEXT_PUBLIC_SITE_URL` with the production URL (for example
+   `https://your-domain.com`).
+5. Deploy. No secrets or environment-specific URLs are required for the build.
+
+## Notes
+
+- The hero video, poster, portrait, and project previews are local assets; no
+  external image hosts are used.
+- GSAP timelines and ScrollTriggers are cleaned up on unmount and guarded
+  against React Strict Mode duplication.
+- `MotionProvider` sets Framer Motion's `reducedMotion="user"` globally, and
+  `usePrefersReducedMotion` is hydration-safe so server and client markup match.
+- Animation is skipped or simplified when `prefers-reduced-motion: reduce` is
+  set.
+# portfolio
