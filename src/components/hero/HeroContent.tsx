@@ -204,7 +204,7 @@ export function HeroContent() {
 
           <motion.div
             variants={entranceItem}
-            className="order-first w-full max-w-[17rem] justify-self-center sm:order-none sm:max-w-[23rem] lg:order-last lg:max-w-[25rem] lg:justify-self-end"
+            className="order-first w-full max-w-[20rem] justify-self-center sm:order-none sm:max-w-[23rem] lg:order-last lg:max-w-[25rem] lg:justify-self-end"
           >
             <HeroPortrait />
           </motion.div>

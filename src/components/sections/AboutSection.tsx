@@ -3,12 +3,15 @@ import {
   ArrowRight,
   Code2,
   Compass,
+  Download,
+  ExternalLink,
+  FileText,
   Layers3,
   MapPin,
   Quote,
 } from "lucide-react";
 import { personal } from "@/data/personal";
-import { technologies } from "@/data/skills";
+import { coreTechnologies } from "@/data/skills";
 import { ScrollReveal } from "@/components/animations/ScrollReveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SocialLinks } from "@/components/ui/SocialLinks";
@@ -170,7 +173,7 @@ export function AboutSection() {
                     Daily toolkit
                   </p>
                   <ul className="mt-3 grid grid-cols-3 gap-2" aria-label="Technologies">
-                    {technologies.map((technology) => (
+                    {coreTechnologies.map((technology) => (
                       <li
                         key={technology.name}
                         title={technology.name}
@@ -203,6 +206,62 @@ export function AboutSection() {
             </div>
           </div>
         </div>
+
+        <ScrollReveal delay={0.1} className="mt-5">
+          <article className="relative overflow-hidden rounded-2xl border border-primary/25 bg-gradient-to-r from-primary/[0.12] via-card/50 to-card/30 p-5 sm:p-6">
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute -right-16 -top-16 size-48 rounded-full bg-primary/10 blur-3xl"
+            />
+            <div className="relative flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
+              <div className="flex items-start gap-4">
+                <span className="flex size-11 shrink-0 items-center justify-center rounded-xl border border-primary/25 bg-primary/10 text-accent shadow-[0_10px_30px_-16px_rgba(139,92,246,0.8)]">
+                  <FileText className="size-5" aria-hidden="true" />
+                </span>
+                <div className="min-w-0">
+                  <p className="font-mono text-[9px] uppercase tracking-[0.24em] text-lavender">
+                    Resume
+                  </p>
+                  <h3 className="mt-1 font-display text-xl font-semibold tracking-tight text-white">
+                    Take the full story with you
+                  </h3>
+                  <p className="mt-1.5 max-w-xl text-[13px] leading-6 text-secondary">
+                    View Md. Omar&apos;s Resume in your browser or download a
+                    PDF copy for later.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-2.5 sm:flex-row sm:items-center lg:shrink-0">
+                <a
+                  href={personal.resume.path}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="View Md. Omar's Resume in a new tab"
+                  className="group inline-flex min-h-11 items-center justify-center gap-2.5 rounded-full border border-primary/40 bg-gradient-to-r from-deep to-primary px-5 py-3 text-sm font-medium text-white shadow-[0_14px_40px_-14px_rgba(139,92,246,0.8)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_18px_50px_-14px_rgba(139,92,246,0.95)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
+                >
+                  <span>View My Resume</span>
+                  <ExternalLink
+                    className="size-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                    aria-hidden="true"
+                  />
+                </a>
+                <a
+                  href={personal.resume.path}
+                  download={personal.resume.downloadName}
+                  aria-label={`Download Md. Omar's Resume as ${personal.resume.downloadName}`}
+                  className="group inline-flex min-h-11 items-center justify-center gap-2.5 rounded-full border border-primary/30 bg-transparent px-5 py-3 text-sm font-medium text-lavender transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/60 hover:bg-primary/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
+                >
+                  <span>Download My Resume</span>
+                  <Download
+                    className="size-4 transition-transform duration-300 group-hover:translate-y-0.5"
+                    aria-hidden="true"
+                  />
+                </a>
+              </div>
+            </div>
+          </article>
+        </ScrollReveal>
       </div>
     </section>
   );

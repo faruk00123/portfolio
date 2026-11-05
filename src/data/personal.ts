@@ -19,6 +19,19 @@ export const personal = {
     "As a fresher, I am continuously improving my skills through hands-on projects, practical learning, and exploring modern development practices. My goal is to grow as a software engineer and contribute to meaningful products and development teams.",
   ],
   technologies: ["React", "Next.js", "JavaScript", "TypeScript", "Node.js", "MongoDB"],
+  /**
+   * Both Resume actions point at the same PDF in `public/`.
+   * Expected public URL: /images/Omar%20Resume.pdf
+   * Expected file on disk: public/images/Omar Resume.pdf
+   *
+   * NOTE: this PDF is not present in the current checkout — only
+   * `public/images/Omar Resume.jpg` exists. Add the real PDF at the path
+   * above to make both actions resolve.
+   */
+  resume: {
+    path: "/images/Omar%20Resume.pdf",
+    downloadName: "Md-Omar-Resume.pdf",
+  },
 } as const;
 
 export type SocialLink = {

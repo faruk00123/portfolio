@@ -1,12 +1,24 @@
 export type TechnologyLogoName =
-  | "react"
-  | "nextjs"
+  | "html5"
+  | "css3"
   | "javascript"
   | "typescript"
+  | "react"
+  | "nextjs"
+  | "tailwind"
   | "nodejs"
-  | "mongodb";
+  | "express"
+  | "mongodb"
+  | "git"
+  | "github"
+  | "vercel"
+  | "restapi";
 
-export type TechnologyCategory = "Frontend" | "Backend" | "Database";
+export type TechnologyCategory =
+  | "Frontend"
+  | "Backend"
+  | "Database"
+  | "Tools & Deployment";
 
 export type Technology = {
   name: string;
@@ -15,8 +27,6 @@ export type Technology = {
   description: string;
   /** Brand colour used for the logo mark. */
   accent: string;
-  /** Soft brand-tinted glow shown on card hover. */
-  glow: string;
 };
 
 /**
@@ -25,22 +35,20 @@ export type Technology = {
  */
 export const technologies: Technology[] = [
   {
-    name: "React",
-    logo: "react",
+    name: "HTML5",
+    logo: "html5",
     category: "Frontend",
     description:
-      "Component-driven interfaces built from reusable, stateful pieces.",
-    accent: "text-[#61DAFB]",
-    glow: "group-hover:shadow-[0_24px_60px_-30px_rgba(97,218,251,0.55)]",
+      "Semantic, accessible markup that forms the structure of every page.",
+    accent: "text-[#E34F26]",
   },
   {
-    name: "Next.js",
-    logo: "nextjs",
+    name: "CSS3",
+    logo: "css3",
     category: "Frontend",
     description:
-      "App Router pages, server components, and production-ready routing.",
-    accent: "text-white",
-    glow: "group-hover:shadow-[0_24px_60px_-30px_rgba(255,255,255,0.32)]",
+      "Responsive layouts, modern styling, and polished visual detail.",
+    accent: "text-[#1572B6]",
   },
   {
     name: "JavaScript",
@@ -49,7 +57,6 @@ export const technologies: Technology[] = [
     description:
       "The language behind every interactive experience on the web.",
     accent: "text-[#F7DF1E]",
-    glow: "group-hover:shadow-[0_24px_60px_-30px_rgba(247,223,30,0.4)]",
   },
   {
     name: "TypeScript",
@@ -58,7 +65,30 @@ export const technologies: Technology[] = [
     description:
       "Type-safe code and clearer contracts from the UI down to the data.",
     accent: "text-[#3178C6]",
-    glow: "group-hover:shadow-[0_24px_60px_-30px_rgba(49,120,198,0.55)]",
+  },
+  {
+    name: "React",
+    logo: "react",
+    category: "Frontend",
+    description:
+      "Component-driven interfaces built from reusable, stateful pieces.",
+    accent: "text-[#61DAFB]",
+  },
+  {
+    name: "Next.js",
+    logo: "nextjs",
+    category: "Frontend",
+    description:
+      "App Router pages, server components, and production-ready routing.",
+    accent: "text-white",
+  },
+  {
+    name: "Tailwind CSS",
+    logo: "tailwind",
+    category: "Frontend",
+    description:
+      "Utility-first styling for consistent, responsive interfaces.",
+    accent: "text-[#38BDF8]",
   },
   {
     name: "Node.js",
@@ -67,7 +97,22 @@ export const technologies: Technology[] = [
     description:
       "Server-side JavaScript for APIs, application logic, and data flow.",
     accent: "text-[#5FA04E]",
-    glow: "group-hover:shadow-[0_24px_60px_-30px_rgba(95,160,78,0.55)]",
+  },
+  {
+    name: "Express.js",
+    logo: "express",
+    category: "Backend",
+    description:
+      "Lightweight routing and middleware for Node.js APIs.",
+    accent: "text-[#E8E8E8]",
+  },
+  {
+    name: "REST API",
+    logo: "restapi",
+    category: "Backend",
+    description:
+      "Clean, predictable endpoints that connect the frontend to data.",
+    accent: "text-[#A78BFA]",
   },
   {
     name: "MongoDB",
@@ -76,9 +121,98 @@ export const technologies: Technology[] = [
     description:
       "Flexible document data modelled around real application needs.",
     accent: "text-[#47A248]",
-    glow: "group-hover:shadow-[0_24px_60px_-30px_rgba(71,162,72,0.55)]",
+  },
+  {
+    name: "Git",
+    logo: "git",
+    category: "Tools & Deployment",
+    description:
+      "Version control that keeps every change traceable and reversible.",
+    accent: "text-[#F05032]",
+  },
+  {
+    name: "GitHub",
+    logo: "github",
+    category: "Tools & Deployment",
+    description:
+      "Repositories, collaboration, and code review in one place.",
+    accent: "text-white",
+  },
+  {
+    name: "Vercel",
+    logo: "vercel",
+    category: "Tools & Deployment",
+    description:
+      "Fast, reliable deployments for modern frontend applications.",
+    accent: "text-white",
   },
 ];
 
-/** The six marks orbiting the hero portrait. */
+export type SkillCategoryIcon =
+  | "frontend"
+  | "backend"
+  | "database"
+  | "tools";
+
+export type SkillCategory = {
+  id: string;
+  title: string;
+  description: string;
+  icon: SkillCategoryIcon;
+  category: TechnologyCategory;
+};
+
+/** The four groups shown in the Skills section. */
+export const skillCategories: SkillCategory[] = [
+  {
+    id: "frontend",
+    title: "Frontend Development",
+    description:
+      "Interfaces, interactions, and the browser-facing layer of the product.",
+    icon: "frontend",
+    category: "Frontend",
+  },
+  {
+    id: "backend",
+    title: "Backend Development",
+    description:
+      "APIs, server logic, and the services that sit behind the interface.",
+    icon: "backend",
+    category: "Backend",
+  },
+  {
+    id: "database",
+    title: "Database",
+    description:
+      "Flexible, dependable data modelled around real application needs.",
+    icon: "database",
+    category: "Database",
+  },
+  {
+    id: "tools",
+    title: "Tools & Deployment",
+    description:
+      "Version control, collaboration, and shipping work to production.",
+    icon: "tools",
+    category: "Tools & Deployment",
+  },
+];
+
+const technologyByName = new Map(
+  technologies.map((technology) => [technology.name, technology] as const),
+);
+
+/** The compact set shown in the About section's daily toolkit card. */
+export const coreTechnologies = [
+  "React",
+  "Next.js",
+  "JavaScript",
+  "TypeScript",
+  "Node.js",
+  "MongoDB",
+]
+  .map((name) => technologyByName.get(name))
+  .filter((technology): technology is Technology => Boolean(technology));
+
+/** All fourteen marks orbiting the hero portrait. */
 export const orbitTechnologies = technologies;

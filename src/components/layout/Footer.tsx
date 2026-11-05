@@ -12,14 +12,20 @@ export function Footer() {
         aria-hidden="true"
         className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent"
       />
+      {/*
+        Decorative watermark: anchored to the lower-middle-left of the footer,
+        behind all content. The responsive sizes keep it inside the first
+        column on larger screens so it never sits behind the navigation or
+        contact details, and the mask fades it out before the right edge.
+      */}
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute -bottom-24 right-0 select-none font-display text-[11rem] font-semibold leading-none tracking-[-0.06em] text-white/[0.018] sm:text-[16rem]"
+        className="pointer-events-none absolute bottom-[12%] left-[-0.5rem] z-0 max-w-full select-none whitespace-nowrap font-display text-[6.5rem] font-semibold leading-none tracking-[-0.07em] text-primary/[0.06] [mask-image:linear-gradient(100deg,#000_10%,transparent_90%)] sm:bottom-[10%] sm:left-0 sm:text-[9rem] md:bottom-[8%] md:text-[6.5rem] lg:bottom-[8%] lg:left-[1%] lg:text-[9.5rem] xl:text-[12rem]"
       >
         OMAR
       </span>
 
-      <div className="relative mx-auto max-w-7xl px-5 py-14 sm:px-8 sm:py-16 lg:px-12">
+      <div className="relative z-10 mx-auto max-w-7xl px-5 py-14 sm:px-8 sm:py-16 lg:px-12">
         <div className="grid gap-10 md:grid-cols-[1.25fr_1fr_auto]">
           <div>
             <a

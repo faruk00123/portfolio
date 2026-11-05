@@ -5,12 +5,17 @@ import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { cn } from "@/lib/cn";
 
 export const typewriterPhrases = [
+  "I am Omar.",
   "I am a Software Engineer.",
   "I am a Full Stack Developer.",
   "I am a React Developer.",
   "I am a Next.js Developer.",
+  "I am a JavaScript Developer.",
+  "I am a TypeScript Developer.",
   "I am a Node.js Developer.",
-  "I am Omar.",
+  "I am a Tailwind CSS Developer.",
+  "I am a Frontend Developer.",
+  "I am a Backend Developer.",
 ] as const;
 
 type TypewriterProps = {
@@ -61,11 +66,11 @@ export function Typewriter({ className }: TypewriterProps) {
   return (
     <p
       className={cn(
-        "flex min-h-[1.7em] items-baseline font-display text-[clamp(1.1rem,2.5vw,1.65rem)] font-medium tracking-[-0.02em] text-lavender",
+        "flex min-h-[1.7em] items-baseline font-display text-[clamp(1rem,2.5vw,1.65rem)] font-medium tracking-[-0.02em] text-lavender",
         className,
       )}
     >
-      <span aria-hidden="true" className="text-balance">
+      <span aria-hidden="true" className="whitespace-nowrap">
         {displayedText}
       </span>
       <span
@@ -74,7 +79,9 @@ export function Typewriter({ className }: TypewriterProps) {
       />
       <span className="sr-only">
         I am Md. Omar, a Software Engineer, Full Stack Developer, React
-        Developer, Next.js Developer, and Node.js Developer.
+        Developer, Next.js Developer, JavaScript Developer, TypeScript
+        Developer, Node.js Developer, Tailwind CSS Developer, Frontend
+        Developer, and Backend Developer.
       </span>
     </p>
   );

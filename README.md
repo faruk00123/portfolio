@@ -30,16 +30,22 @@ npm start
 - Full-screen hero with a muted, looping, autoplaying background video, poster
   fallback, constant readability overlays, and a subtle GSAP media-only scale.
   The hero brightness does not change on scroll.
-- Typewriter headline cycling six phrases with a blinking caret. It renders the
-  first phrase statically when `prefers-reduced-motion: reduce` is set.
-- Portrait composition with six tech logos (React, Next.js, JavaScript,
-  TypeScript, Node.js, MongoDB) orbiting continuously. Icons stay upright and
-  the orbit stops under reduced motion.
+- Typewriter headline cycling eleven developer phrases with a blinking caret.
+  It renders the first phrase statically when
+  `prefers-reduced-motion: reduce` is set.
+- Portrait composition with fourteen tech logos arranged across three
+  independent orbit rings (different sizes, speeds, and directions). Icons stay
+  upright, pause and highlight on hover, and the orbit stops under reduced
+  motion.
+- About section includes **View My Resume** (opens the PDF in a new tab) and
+  **Download My Resume** (downloads it as `Md-Omar-Resume.pdf`).
 - Section headings: **About Me**, **My Skills**, **My Development Journey**,
   **Featured Projects**, and **Let's Connect**.
-- Responsive CSS grids: one column on mobile, two on tablet, three on desktop
-  for skills/journey, and two to three for projects.
-- Skills are individual cards with real brand logos and no percentage bars.
+- Responsive CSS grids: one column on mobile, two on tablet, and four on desktop
+  for skills, with one to two for journey and two to three for projects.
+- Skills are grouped into Frontend Development, Backend Development, Database,
+  and Tools &amp; Deployment, with individual cards, real brand logos, and no
+  percentage bars.
 - Journey uses six balanced stage cards (five stages plus a next-chapter card),
   with no pinning or sticky stacking.
 - Projects use a premium card grid with image hover zoom, stack badges, and
@@ -80,6 +86,22 @@ portrait: "/images/omar-portrait.png",
 Drop a replacement at `public/images/omar-portrait.png`. A transparent
 background cutout works best. The hero and About section both use this file.
 
+## Resume
+
+Both Resume actions read from `src/data/personal.ts`:
+
+```ts
+resume: {
+  path: "/images/Omar%20Resume.pdf",
+  downloadName: "Md-Omar-Resume.pdf",
+},
+```
+
+The file must exist at `public/images/Omar Resume.pdf`. The View action opens
+that public URL in a new tab; the Download action saves the same file as
+`Md-Omar-Resume.pdf`. If the PDF is missing, both links will 404 until the file
+is added.
+
 ## Edit projects
 
 Project content lives in `src/data/projects.ts`. The current entries are
@@ -97,9 +119,10 @@ live in `public/images/projects/`. Replace them with real screenshots and update
 ## Personal data
 
 - `src/data/personal.ts` — name, title, email, location, social links, about
-  copy, hero media paths.
+  copy, hero media paths, and Resume paths.
 - `src/data/navigation.ts` — section nav items and active-section ids.
-- `src/data/skills.ts` — six technologies with brand colors and logo keys.
+- `src/data/skills.ts` — fourteen technologies, four skill categories, and the
+  orbit data, all with brand colors and logo keys.
 - `src/data/journey.ts` — learning stages (no invented dates or employers).
 - `src/data/projects.ts` — project cards and placeholder flags.
 

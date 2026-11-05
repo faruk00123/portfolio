@@ -145,8 +145,8 @@ li {
   animation: scroll-cue 2.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
-/* Circular orbit around the hero portrait. The stage rotates; each icon
-   counter-rotates so the technology marks always stay upright. */
+/* Layered orbit rings around the hero portrait. Each ring rotates while its
+   icons counter-rotate, keeping every technology mark upright. */
 @keyframes hero-orbit-spin {
   to {
     transform: rotate(360deg);
@@ -156,6 +156,16 @@ li {
 @keyframes hero-orbit-counter {
   to {
     transform: rotate(-360deg);
+  }
+}
+
+@keyframes orbit-bob {
+  0%,
+  100% {
+    transform: translateY(-2px);
+  }
+  50% {
+    transform: translateY(2px);
   }
 }
 
@@ -171,12 +181,13 @@ li {
 }
 
 .hero-orbit-stage {
-  --orbit-radius: clamp(6rem, 25vw, 10rem);
-  --orbit-duration: 38s;
+  container-type: inline-size;
 }
 
-.hero-orbit {
+.hero-orbit-ring {
   animation: hero-orbit-spin var(--orbit-duration) linear infinite;
+  animation-direction: var(--orbit-direction, normal);
+  will-change: transform;
 }
 
 .hero-orbit-item {
@@ -190,23 +201,44 @@ li {
 
 .hero-orbit-icon {
   animation: hero-orbit-counter var(--orbit-duration) linear infinite;
+  animation-direction: var(--orbit-counter-direction, normal);
+  will-change: transform;
+}
+
+.orbit-float {
+  animation: orbit-bob 6s ease-in-out infinite;
+}
+
+.hero-orbit-stage[data-interacting="true"] .hero-orbit-ring,
+.hero-orbit-stage[data-interacting="true"] .hero-orbit-icon,
+.hero-orbit-stage[data-interacting="true"] .orbit-float {
+  animation-play-state: paused;
+}
+
+/* Asymmetrical portrait mask and the thin gradient frame around it. */
+.portrait-mask {
+  border-radius: 56% 44% 47% 53% / 48% 52% 48% 52%;
+}
+
+.portrait-frame {
+  background: conic-gradient(
+    from 200deg,
+    rgba(139, 92, 246, 0.95),
+    rgba(196, 181, 253, 0.18),
+    rgba(109, 40, 217, 0.9),
+    rgba(139, 92, 246, 0.95)
+  );
 }
 
 .animate-caret {
   animation: caret-blink 1s steps(1, end) infinite;
 }
 
-@media (max-width: 400px) {
-  .hero-orbit-stage {
-    --orbit-radius: clamp(6rem, 29vw, 7.5rem);
-    --orbit-duration: 44s;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   .animate-scroll-cue,
-  .hero-orbit,
+  .hero-orbit-ring,
   .hero-orbit-icon,
+  .orbit-float,
   .animate-caret {
     animation: none;
   }
