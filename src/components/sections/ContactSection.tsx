@@ -30,7 +30,9 @@ const socialIcons = {
 export function ContactSection() {
   const shouldReduceMotion = usePrefersReducedMotion();
   const [copyState, setCopyState] = useState<CopyState>("idle");
-  const [localTime, setLocalTime] = useState("");
+  const [clock, setClock] = useState<{ time: string; date: string } | null>(
+    null,
+  );
 
   useEffect(() => {
     if (copyState === "idle") return;
@@ -39,17 +41,33 @@ export function ContactSection() {
   }, [copyState]);
 
   useEffect(() => {
-    const formatter = new Intl.DateTimeFormat("en-US", {
+    const timeFormatter = new Intl.DateTimeFormat("en-US", {
       timeZone: "Asia/Dhaka",
-      hour: "numeric",
+      hour: "2-digit",
       minute: "2-digit",
+      second: "2-digit",
       hour12: true,
     });
 
-    const update = () => setLocalTime(formatter.format(new Date()));
-    update();
+    const dateFormatter = new Intl.DateTimeFormat("en-US", {
+      timeZone: "Asia/Dhaka",
+      weekday: "long",
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    });
 
-    const interval = window.setInterval(update, 30_000);
+    const update = () => {
+      const now = new Date();
+      setClock({
+        time: timeFormatter.format(now),
+        date: dateFormatter.format(now),
+      });
+    };
+
+    // Update immediately, then tick every second so the seconds stay live.
+    update();
+    const interval = window.setInterval(update, 1_000);
     return () => window.clearInterval(interval);
   }, []);
 
@@ -276,7 +294,7 @@ export function ContactSection() {
                   </ul>
 
                   <div className="mt-5 rounded-xl border border-line/60 bg-canvas/30 p-3.5">
-                    <div className="flex items-center justify-between gap-4">
+                    <div className="flex flex-col gap-3.5 sm:flex-row sm:items-center sm:justify-between">
                       <div className="flex items-center gap-3">
                         <span className="flex size-8 items-center justify-center rounded-lg border border-line/70 bg-card/50 text-accent">
                           <MapPin className="size-4" aria-hidden="true" />
@@ -286,18 +304,32 @@ export function ContactSection() {
                             Based in
                           </p>
                           <p className="mt-0.5 text-xs font-medium text-white">
-                            Barishal, Bangladesh
+                            {personal.location}
                           </p>
                         </div>
                       </div>
 
-                      <div className="text-right">
-                        <p className="flex items-center justify-end gap-1.5 font-mono text-[8px] uppercase tracking-[0.2em] text-muted">
-                          <Clock3 className="size-3" aria-hidden="true" />
+                      <div className="border-t border-dashed border-line/60 pt-3 sm:border-l sm:border-t-0 sm:pl-4 sm:pt-0 sm:text-right">
+                        <p className="flex items-center gap-1.5 font-mono text-[8px] uppercase tracking-[0.2em] text-muted sm:justify-end">
+                          <span
+                            aria-hidden="true"
+                            className="relative flex size-1.5"
+                          >
+                            <span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400/60 [animation-duration:2s]" />
+                            <span className="relative inline-flex size-1.5 rounded-full bg-emerald-400" />
+                          </span>
+                          <Clock3 className="size-3 text-accent" aria-hidden="true" />
                           Local time
                         </p>
-                        <p className="mt-0.5 font-mono text-xs tabular-nums text-lavender">
-                          {localTime || "—"}
+                        <p
+                          role="timer"
+                          aria-label={`Current time in ${personal.location}`}
+                          className="mt-1 font-mono text-base font-medium tabular-nums tracking-tight text-lavender"
+                        >
+                          {clock?.time ?? "—"}
+                        </p>
+                        <p className="mt-0.5 text-[10px] leading-4 text-muted">
+                          {clock?.date ?? "\u00A0"}
                         </p>
                       </div>
                     </div>

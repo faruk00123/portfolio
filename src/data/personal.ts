@@ -20,15 +20,12 @@ export const personal = {
   ],
   technologies: ["React", "Next.js", "JavaScript", "TypeScript", "Node.js", "MongoDB"],
   /**
-   * Both Resume actions point at the same PDF in `public/`.
-   * Expected public URL: /images/Omar%20Resume.pdf
-   * Expected file on disk: public/images/Omar Resume.pdf
-   *
-   * NOTE: this PDF is not present in the current checkout — only
-   * `public/images/Omar Resume.jpg` exists. Add the real PDF at the path
-   * above to make both actions resolve.
+   * `public/images/Omar Resume.pdf` is the single source of truth.
+   * The card thumbnail is rendered from its first page with
+   * `npm run resume:preview`.
    */
   resume: {
+    image: "/images/Omar-Resume-preview.png",
     path: "/images/Omar%20Resume.pdf",
     downloadName: "Md-Omar-Resume.pdf",
   },

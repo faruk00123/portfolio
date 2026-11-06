@@ -88,19 +88,27 @@ background cutout works best. The hero and About section both use this file.
 
 ## Resume
 
-Both Resume actions read from `src/data/personal.ts`:
+Both Resume actions and the preview thumbnail read from `src/data/personal.ts`:
 
 ```ts
 resume: {
+  image: "/images/Omar-Resume-preview.png",
   path: "/images/Omar%20Resume.pdf",
   downloadName: "Md-Omar-Resume.pdf",
 },
 ```
 
-The file must exist at `public/images/Omar Resume.pdf`. The View action opens
-that public URL in a new tab; the Download action saves the same file as
-`Md-Omar-Resume.pdf`. If the PDF is missing, both links will 404 until the file
-is added.
+The PDF lives at `public/images/Omar Resume.pdf`. The View action opens that
+public URL in a new tab; the Download action saves the same file as
+`Md-Omar-Resume.pdf`. The preview card uses
+`public/images/Omar-Resume-preview.png`, which is rendered from the first page
+of the PDF.
+
+To regenerate the preview after replacing the PDF, run:
+
+```bash
+npm run resume:preview
+```
 
 ## Edit projects
 
